@@ -383,7 +383,7 @@ message UnitTestModelPartialUpdateRequest {
 }
 
 message UnitTestModelRetrieveRequest {
-    int32 id = 1;
+    string title = 1;
 }
 
 message UnitTestModelStreamRequest {

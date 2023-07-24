@@ -15,6 +15,11 @@ class UnitTestModelService(generics.AsyncModelService, mixins.AsyncStreamModelMi
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["title", "text"]
 
+    def get_lookup_request_field(self, queryset=None):
+        if self.action == "Retrieve":
+            return "title"
+        return super().get_lookup_request_field(queryset=queryset)
+
     @sync_to_async
     def _make(self, queryset, count):
         # INFO - AM - 14/01/2022 - query_fetched_datetime is an extra args in the custom request

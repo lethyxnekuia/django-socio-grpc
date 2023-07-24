@@ -50,9 +50,9 @@ class TestAsyncModelService(TestCase):
         self.assertEqual(len(response.results), 10)
 
     def test_async_retrieve(self):
-        unit_id = UnitTestModel.objects.first().id
+        unit_title = UnitTestModel.objects.first().title
         grpc_stub = self.fake_grpc.get_fake_stub(UnitTestModelControllerStub)
-        request = fakeapp_pb2.UnitTestModelRetrieveRequest(id=unit_id)
+        request = fakeapp_pb2.UnitTestModelRetrieveRequest(title=unit_title)
         response = async_to_sync(grpc_stub.Retrieve)(request=request)
 
         self.assertEqual(response.title, "z")
